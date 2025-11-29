@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
@@ -38,8 +39,8 @@ class MenuRestoran {
     };
 
     // DATA PESANAN
-    String[] pesananNama = new String[100];
-    int[] pesananJumlah = new int[100];
+    ArrayList<String> pesananNama = new ArrayList<>();
+    ArrayList<Integer> pesananJumlah = new ArrayList<>();
     int pesananCount = 0;
 
 
@@ -119,8 +120,8 @@ class MenuRestoran {
             System.out.print("Jumlah: ");
             int qty = Integer.parseInt(input.nextLine());
 
-            pesananNama[pesananCount] = nama;
-            pesananJumlah[pesananCount] = qty;
+            pesananNama.add(nama);
+            pesananJumlah.add(qty);
             pesananCount++;
 
             System.out.println("Pesanan ditambahkan!\n");
@@ -151,14 +152,14 @@ class MenuRestoran {
         boolean beli1gratis1 = false;
 
         for (int i = 0; i < pesananCount; i++) {
-            int index = cariMenu(pesananNama[i]);
+            int index = cariMenu(pesananNama.get(i));
             if (index == -1) continue;
 
             Menu m = daftarMenu[index];
-            int total = m.harga * pesananJumlah[i];
+            int total = m.harga * pesananJumlah.get(i);
             subtotal += total;
 
-            System.out.println(m.nama + " (" + pesananJumlah[i] + " x Rp" + m.harga + ") = Rp" + total);
+            System.out.println(m.nama + " (" + pesananJumlah.get(i) + " x Rp" + m.harga + ") = Rp" + total);
         }
 
         double pajak = subtotal * 0.10;
